@@ -1,5 +1,9 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+      <!-- Botão de menu para abrir o sidemenu -->
+    </ion-buttons>
     <ion-title>Cronograma</ion-title>
   </ion-toolbar>
 </ion-header>
@@ -9,45 +13,51 @@
     <ion-toolbar>
       <ion-title size="large">Cronograma</ion-title>
     </ion-toolbar>
-
   </ion-header>
-<h1>Semana 15</h1>
+  <h1>Semana 15</h1>
 
-<div class="table-container" style="background-color: azure;">
-  <table style="text-align: center; border-color: black; border: 10px;">
-    <tr>
-      <th style="text-align: center; border-color: black; border: 10px;"></th>
-      <ng-container  style="text-align: center; border-color: black; border: 10px;" *ngFor="let row of rows">
-        <th  style="text-align: center; border-color: black; border: 10px;" >{{ row.label }}</th>
-      </ng-container>
-    </tr>
-    <tr *ngFor="let item of items; let i = index">
-      <td>{{ item }}</td>
-      <td *ngFor="let row of rows; let j = index" (click)="cellClicked(j, i)"
-          [ngStyle]="{ 'background-color': rows[j].cells[i] }">
-        {{ rows[j].cells[i] }}
-      </td>
-    </tr>
-  </table>
-</div>
+  <div class="table-container" style="background-color: azure">
+    <table style="text-align: center; border-color: black; border: 10px">
+      <tr>
+        <th style="text-align: center; border-color: black; border: 10px"></th>
+        <ng-container
+          style="text-align: center; border-color: black; border: 10px"
+          *ngFor="let row of rows"
+        >
+          <th style="text-align: center; border-color: black; border: 10px">
+            {{ row.label }}
+          </th>
+        </ng-container>
+      </tr>
+      <tr *ngFor="let item of items; let i = index">
+        <td>{{ item }}</td>
+        <td
+          *ngFor="let row of rows; let j = index"
+          (click)="cellClicked(j, i)"
+          [ngStyle]="{ 'background-color': rows[j].cells[i] }"
+        >
+          {{ rows[j].cells[i] }}
+        </td>
+      </tr>
+    </table>
+  </div>
 
-<ion-infinite-scroll (ionInfinite)="loadMore($event)">
-  <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Carregando mais itens..."></ion-infinite-scroll-content>
-</ion-infinite-scroll>
+  <ion-infinite-scroll (ionInfinite)="loadMore($event)">
+    <ion-infinite-scroll-content
+      loadingSpinner="bubbles"
+      loadingText="Carregando mais itens..."
+    ></ion-infinite-scroll-content>
+  </ion-infinite-scroll>
 
-<style>
-  .table-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    grid-gap: 10px;
-  }
+  <style>
+    .table-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      grid-gap: 10px;
+    }
 
-  table {
-    width: 100%;
-  }
-</style>
-
-
-
-
+    table {
+      width: 100%;
+    }
+  </style>
 </ion-content>
