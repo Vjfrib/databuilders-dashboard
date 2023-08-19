@@ -15,22 +15,22 @@ const routes: Routes = [
   {
     path: 'dashboard',
     loadChildren: () =>
-      import('./dashboard/dashboard.module').then((m) => m.DashboardPageModule),
+      import('./folder/dashboard/dashboard.module').then((m) => m.DashboardPageModule),
   },
   {
     path: 'notes',
     loadChildren: () =>
-      import('./notes/notes.module').then((m) => m.NotesPageModule),
+      import('./folder/notes/notes.module').then((m) => m.NotesPageModule),
   },
   {
     path: 'buldge',
     loadChildren: () =>
-      import('./buldge/buldge.module').then((m) => m.BuldgePageModule),
+      import('./folder/buldge/buldge.module').then((m) => m.BuldgePageModule),
   },
   {
     path: 'timer',
     loadChildren: () =>
-      import('./timer/timer.module').then((m) => m.TimerPageModule),
+      import('./folder/timer/timer.module').then((m) => m.TimerPageModule),
   },
 ];
 
