@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MenuController } from '@ionic/angular';
 
 @Component({
   selector: 'app-notes',
@@ -7,6 +8,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NotesPage implements OnInit {
   cards: { title: string; subtitle: string; description: string }[] = [];
+
+  constructor(private menu: MenuController) {}
 
   ngOnInit() {
     this.generateCards();
@@ -28,5 +31,10 @@ export class NotesPage implements OnInit {
       this.generateCards();
       event.target.complete();
     }, 500);
+  }
+
+  openSidemenu() {
+    this.menu.enable(true, 'main-menu'); // Certifique-se de usar o mesmo ID do seu sidemenu
+    this.menu.open('main-menu'); // Abre o sidemenu com o ID especificado
   }
 }
