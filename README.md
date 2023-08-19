@@ -1,3 +1,3 @@
-# databuilders-dashboard
+# Sidemenu para exibição de dashboards
 
-[Edit on StackBlitz ⚡️](https://stackblitz.com/edit/ionic-v5-angular-sidemenu-refresher-xyfnuc)
+terminal de saídas para Ploty nos dashboards
