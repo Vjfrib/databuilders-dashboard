@@ -11,6 +11,22 @@ const routes: Routes = [
     path: 'folder/:id',
     loadChildren: () => import('./folder/folder.module').then( m => m.FolderPageModule)
   }
+  {
+    path: 'dashboard',
+    loadChildren: () => import('./dashboard/dashboard.module').then( m => m.DashboardPageModule)
+  },
+  {
+    path: 'notes',
+    loadChildren: () => import('./notes/notes.module').then( m => m.NotesPageModule)
+  },
+  {
+    path: 'buldge',
+    loadChildren: () => import('./buldge/buldge.module').then( m => m.BuldgePageModule)
+  },
+  {
+    path: 'timer',
+    loadChildren: () => import('./timer/timer.module').then( m => m.TimerPageModule)
+  }
 ];
 
 @NgModule({
