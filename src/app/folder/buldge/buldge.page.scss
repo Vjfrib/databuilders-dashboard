@@ -1,0 +1,58 @@
+.button-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+}
+
+.custom-button {
+  flex: 1;
+  margin: 5px;
+  border-radius: 25px;
+  font-size: 12px;
+}
+
+.custom-outline-button {
+  flex: 1;
+  margin: 5px;
+  border-radius: 25px;
+  font-size: 12px;
+  border: 1px solid var(--ion-color-primary);
+}
+
+.upload-button {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 5px;
+  border: 1px solid var(--ion-color-primary);
+  border-radius: 25px;
+}
+
+.upload-label {
+  color: var(--ion-color-primary);
+}
+
+.card-container {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+}
+
+.value-card {
+  margin-right: 10px;
+}
+
+.select-container {
+  display: flex;
+  align-items: center;
+  border: 1px solid var(--ion-color-primary);
+  border-radius: 25px;
+  padding: 5px 10px;
+  width: 80%;
+}
+
+.lats {
+  height: 450px;
+}

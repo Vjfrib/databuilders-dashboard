@@ -1,7 +1,7 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-buttons slot="start">
-      <ion-menu-button></ion-menu-button> <!-- Botão de menu para abrir o sidemenu -->
+      <ion-menu-button></ion-menu-button>
     </ion-buttons>
     <ion-title>Orçamento</ion-title>
   </ion-toolbar>
@@ -13,49 +13,27 @@
       <ion-title size="large">buldge</ion-title>
     </ion-toolbar>
   </ion-header>
-    <div class="corte1"><br><br>
-     
-      <ion-item>
-        <ion-icon name="filter-outline"></ion-icon>
-&nbsp;
-        <ion-select style="width: 20%;" label="Filtro" label-placement="Filtro">
-          
-          <ion-select-option value="v1">Centro de custo</ion-select-option>
-          <ion-select-option value="v2">Data</ion-select-option>
-          
-
-        </ion-select>
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <ion-icon name="filter-outline"></ion-icon>
-&nbsp;
-        <ion-select style="width: 20%;" label="Filtro" label-placement="Filtro">
-          
-          <ion-select-option value="v1">Centro de custo</ion-select-option>
-          <ion-select-option value="v2">Data</ion-select-option>
-          
-
-        </ion-select>
-        
+  <div class="button-container">
+    <ion-button class="custom-button">Baixar Xlsx modelo</ion-button>
+   
+    <ion-button shape="" fill="outline">Inserir manualmente</ion-button>
+  </div>
+  <div class="card-container">
+    <div class="value-card">
+      <ion-item class="upload-button">
+        <ion-label class="upload-label">Escolher Arquivo   .</ion-label>
+        <input type="file" accept=".xlsx" (change)="handleFileInput($event)">
       </ion-item>
-      <br>
-      <img src="https://i.ibb.co/PN3t3M1/Imagem-do-Whats-App-de-2023-06-09-s-02-34-20.jpg" alt="errei" class="lats">
-      <img src="https://i.ibb.co/F593BKx/cimento.jpg" alt="" class="lats">
+      <ion-card>
+        <ion-card-content>
+          <p>Valor total: 168 Mil</p>
+        </ion-card-content>
+      </ion-card>
+      <div class="images-container">
+        <img src="https://i.ibb.co/PN3t3M1/Imagem-do-Whats-App-de-2023-06-09-s-02-34-20.jpg" alt="errei" class="lats">
+        <img src="https://i.ibb.co/F593BKx/cimento.jpg" alt="" class="lats">
+      </div>
     </div>
-    <p style="font-size: 22px; border: 2px;">&nbsp;&nbsp;&nbsp;Valor total: 168 Mil</p>
+    
+  </div>
 </ion-content>
-
-
-<style> 
-.corte1 {
-display: down;
-he
-}
-
-.corte2 {
-
-}
-
-.lats {
-height: 450px;
-}
-</style>
