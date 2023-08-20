@@ -41,8 +41,8 @@ export class TimerPage implements OnInit {
           handler: (data) => {
             if (data.taskName) {
               this.items.push(data.taskName);
-              this.rows.push({ label: '', cells: Array(5).fill('') });
-              this.changeDetector.detectChanges(); // Atualiza a interface do usuário
+              this.rows.forEach(row => row.cells.push(''));
+              this.changeDetector.detectChanges();
             }
           },
         },
@@ -59,10 +59,32 @@ export class TimerPage implements OnInit {
     if (cell === '') {
       this.rows[rowIndex].cells[columnIndex] = colors[columnIndex % colors.length];
     } else {
-      this.rows[rowIndex].cells[columnIndex] = ''; // Torna a célula em branco
+      this.rows[rowIndex].cells[columnIndex] = '';
     }
 
-    this.changeDetector.detectChanges(); // Atualiza a interface do usuário
+    this.changeDetector.detectChanges();
+  }
+
+  onDragStart(event: DragEvent, subCardIndex: number) {
+    event.dataTransfer?.setData('text/plain', subCardIndex.toString());
+  }
+
+  allowDrop(event: DragEvent) {
+    event.preventDefault();
+  }
+
+  onDrop(event: DragEvent, targetColumnIndex: number) {
+    event.preventDefault();
+    const subCardIndex = +event.dataTransfer?.getData('text/plain');
+
+    if (!isNaN(subCardIndex)) {
+      const subCard = this.items[subCardIndex];
+      this.rows.forEach(row => {
+        row.cells.splice(subCardIndex, 1);
+        row.cells.splice(targetColumnIndex, 0, subCard);
+      });
+      this.changeDetector.detectChanges();
+    }
   }
 
   ngOnInit() {}
