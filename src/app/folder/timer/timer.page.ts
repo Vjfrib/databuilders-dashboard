@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
+import { AlertController } from '@ionic/angular';
 
 @Component({
   selector: 'app-timer',
@@ -6,43 +7,63 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./timer.page.scss'],
 })
 export class TimerPage implements OnInit {
-  items = ['Fundação', 'Vigas', 'Pilares', 'Lages', 'Alvenaria']; // Itens das colunas da tabela
+  items = ['Fundação', 'Vigas', 'Pilares', 'Lages', 'Alvenaria'];
   rows = [
-    { label: '09/06', cells: ['', '', '', '', ''] },
-    { label: '10/06', cells: ['', '', '', '', ''] },
-    { label: '11/06', cells: ['', '', '', '', ''] },
-    { label: '12/06', cells: ['', '', '', '', ''] },
-    { label: '13/06', cells: ['', '', '', '', ''] }
-  ]; // Linhas da tabela com células vazias inicialmente
+    { label: '09/06', cells: Array(5).fill('') },
+    { label: '10/06', cells: Array(5).fill('') },
+    { label: '11/06', cells: Array(5).fill('') },
+    { label: '12/06', cells: Array(5).fill('') },
+    { label: '13/06', cells: Array(5).fill('') },
+  ];
 
-  private currentItemCount = 5; // Número atual de itens exibidos
-  private readonly itemsPerPage = 5; // Número de itens para carregar por página
+  constructor(
+    private alertController: AlertController,
+    private changeDetector: ChangeDetectorRef
+  ) {}
 
-  constructor() { }
+  async addTask() {
+    const alert = await this.alertController.create({
+      header: 'Adicionar Tarefa',
+      inputs: [
+        {
+          name: 'taskName',
+          type: 'text',
+          placeholder: 'Nome da Tarefa',
+        },
+      ],
+      buttons: [
+        {
+          text: 'Cancelar',
+          role: 'cancel',
+        },
+        {
+          text: 'Adicionar',
+          handler: (data) => {
+            if (data.taskName) {
+              this.items.push(data.taskName);
+              this.rows.push({ label: '', cells: Array(5).fill('') });
+              this.changeDetector.detectChanges(); // Atualiza a interface do usuário
+            }
+          },
+        },
+      ],
+    });
 
-  ngOnInit() {
+    await alert.present();
   }
 
   cellClicked(rowIndex: number, columnIndex: number) {
-  const cell = this.rows[rowIndex].cells[columnIndex];
-  if (cell === '') {
     const colors = ['red', 'blue', 'green', 'yellow', 'purple'];
-    this.rows[rowIndex].cells[columnIndex] = colors[columnIndex % colors.length];
-  } else {
-    this.rows[rowIndex].cells[columnIndex] = '';
+    const cell = this.rows[rowIndex].cells[columnIndex];
+
+    if (cell === '') {
+      this.rows[rowIndex].cells[columnIndex] = colors[columnIndex % colors.length];
+    } else {
+      this.rows[rowIndex].cells[columnIndex] = ''; // Torna a célula em branco
+    }
+
+    this.changeDetector.detectChanges(); // Atualiza a interface do usuário
   }
-}
 
-
-  loadMore(event: any) {
-    setTimeout(() => {
-      this.currentItemCount += this.itemsPerPage;
-      event.target.complete();
-
-      // Verifica se todos os itens foram carregados
-      if (this.currentItemCount >= this.items.length) {
-        event.target.disabled = true;
-      }
-    }, 500);
-  }
+  ngOnInit() {}
 }

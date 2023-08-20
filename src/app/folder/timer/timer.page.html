@@ -2,7 +2,6 @@
   <ion-toolbar>
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
-      <!-- Botão de menu para abrir o sidemenu -->
     </ion-buttons>
     <ion-title>Cronograma</ion-title>
   </ion-toolbar>
@@ -14,7 +13,29 @@
       <ion-title size="large">Cronograma</ion-title>
     </ion-toolbar>
   </ion-header>
-  <h1>Semana 15</h1>
+
+  <div class="container">
+    <div class="element">
+      <!-- Adicionar Tarefa -->
+      <ion-button expand="full" (click)="addTask()">Adicionar Tarefa</ion-button>
+    </div>
+    <div class="element">
+      <!-- Entrada de texto para quantidade de semanas -->
+      <ion-item>
+        <ion-label>Quantidade de Semanas:</ion-label>
+        <ion-input type="number" [(ngModel)]="numberOfWeeks"></ion-input>
+      </ion-item>
+    </div>
+    <div class="element">
+      <!-- Ion Select para escolher a semana -->
+      <ion-item>
+        <ion-label>Semanas:</ion-label>
+        <ion-select placeholder="Selecione uma semana" [(ngModel)]="selectedWeek" (ionChange)="changeWeek()">
+          <ion-select-option *ngFor="let week of weeks" [value]="week">{{ week }}</ion-select-option>
+        </ion-select>
+      </ion-item>
+    </div>
+  </div>
 
   <div class="table-container" style="background-color: azure">
     <table style="text-align: center; border-color: black; border: 10px">
@@ -36,28 +57,35 @@
           (click)="cellClicked(j, i)"
           [ngStyle]="{ 'background-color': rows[j].cells[i] }"
         >
-          {{ rows[j].cells[i] }}
+          
         </td>
       </tr>
     </table>
   </div>
 
   <ion-infinite-scroll (ionInfinite)="loadMore($event)">
-    <ion-infinite-scroll-content
-      loadingSpinner="bubbles"
-      loadingText="Carregando mais itens..."
-    ></ion-infinite-scroll-content>
+    <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Carregando mais itens..."></ion-infinite-scroll-content>
   </ion-infinite-scroll>
 
   <style>
-    .table-container {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      grid-gap: 10px;
+    .container {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 10px;
     }
 
-    table {
-      width: 100%;
+    .element {
+      flex: 1;
+      margin-right: 10px;
+    }
+
+    .table-container {
+      overflow-x: auto;
+    }
+
+    .horizontal-scroll {
+      display: flex;
+      overflow-x: auto;
     }
   </style>
 </ion-content>

@@ -1,0 +1,78 @@
+/* Estilos gerais para a página */
+ion-content {
+  background-color: #f5f5f5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  padding: 0;
+}
+
+/* Estilo para o cabeçalho */
+ion-toolbar {
+  --background: white;
+  color: #333;
+  border-bottom: 1px solid #ccc;
+}
+
+/* Estilo para os elementos de entrada */
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+  margin-bottom: 30px;
+}
+
+.element {
+  flex: 1;
+  margin-right: 10px;
+}
+
+/* Estilo para a tabela */
+.table-container {
+  overflow-x: auto;
+  margin-top: 20px;
+  background-color: #f5f5f5;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 10px;
+}
+
+/* Estilo para a tabela interna */
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+/* Estilo para as células da tabela */
+th,
+td {
+  padding: 10px;
+  border: 1px solid #ccc;
+  background-color: #fff;
+  text-align: center;
+  transition: background-color 0.3s ease-in-out;
+  color: #333; /* Cor do texto */
+}
+
+/* Efeito de transição suave ao passar o mouse */
+td:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+/* Estilo para células coloridas */
+.color-cell {
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out;
+  color: #fff; /* Cor do texto dentro da célula colorida */
+}
+
+/* Estilos para os botões */
+ion-button {
+  --ion-color-primary: #1976d2;
+  --ion-color-primary-contrast: #ffffff;
+  --ion-color-primary-shade: #0e63ad;
+  --ion-color-primary-tint: #1c88c7;
+  width: 100%;
+}
