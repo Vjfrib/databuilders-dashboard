@@ -32,21 +32,21 @@ export class BuldgePage implements OnInit, AfterViewInit {
   drawChartWithData() {
     // You can reuse most of the code from your old dashboard
     var data = new google.visualization.DataTable();
-    data.addColumn('string', 'Mês');
+    data.addColumn('string', 'Material');
     data.addColumn('number', 'Custo');
     data.addColumn('number', 'Somatório');
 
-    var values = [10, 30, 80, 120, 180, 200, 180, 120, 80, 30, 10];
+    var values = [10000, 10000/1.2, 10000/4, 10000/8];
     var cumulativeSum = 0;
     for (var i = 0; i < values.length; i++) {
       cumulativeSum += values[i];
-      data.addRow(['Mês ' + (i + 1), values[i], cumulativeSum]);
+      data.addRow(['Material ' + (i + 1), values[i], cumulativeSum]);
     }
 
     var options = {
-      title: 'Exemplo de Gráfico',
+      title: 'Grafico de Pareto',
       legend: { position: 'bottom' },
-      hAxis: { title: 'Mês' },
+      hAxis: { title: 'Material' },
       vAxis: { title: 'Valor' },
       seriesType: 'bars',
       series: {

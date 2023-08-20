@@ -4,6 +4,12 @@
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
     <ion-title>Cronograma</ion-title>
+    <ion-buttons slot="end">
+      <ion-select placeholder="Opções" [(ngModel)]="selectedOption">
+        <ion-select-option value="gant">Gráfico de Gantt</ion-select-option>
+        <ion-select-option value="kanban">Kanban</ion-select-option>
+      </ion-select>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
@@ -14,78 +20,89 @@
     </ion-toolbar>
   </ion-header>
 
-  <div class="container">
-    <div class="element">
-      <!-- Adicionar Tarefa -->
-      <ion-button expand="full" (click)="addTask()">Adicionar Tarefa</ion-button>
+  <!-- Conteúdo do Gráfico de Gantt -->
+  <ng-container *ngIf="selectedOption === 'gant'; else kanbanTemplate">
+    <div class="container">
+      <div class="element">
+        <!-- Adicionar Tarefa -->
+        <ion-button expand="full" (click)="addTask()">Adicionar Tarefa</ion-button>
+      </div>
+      <div class="element">
+        <!-- Entrada de texto para quantidade de semanas -->
+        <ion-item>
+          <ion-label>Quantidade de Semanas:</ion-label>
+          <ion-input type="number" [(ngModel)]="numberOfWeeks"></ion-input>
+        </ion-item>
+      </div>
+      <div class="element">
+        <!-- Ion Select para escolher a semana -->
+        <ion-item>
+          <ion-label>Semanas:</ion-label>
+          <ion-select placeholder="Selecione uma semana" [(ngModel)]="selectedWeek" (ionChange)="changeWeek()">
+            <ion-select-option *ngFor="let week of weeks" [value]="week">{{ week }}</ion-select-option>
+          </ion-select>
+        </ion-item>
+      </div>
     </div>
-    <div class="element">
-      <!-- Entrada de texto para quantidade de semanas -->
-      <ion-item>
-        <ion-label>Quantidade de Semanas:</ion-label>
-        <ion-input type="number" [(ngModel)]="numberOfWeeks"></ion-input>
-      </ion-item>
+
+    <div class="table-container" style="background-color: azure">
+      <table style="text-align: center; border-color: black; border: 10px">
+        <tr>
+          <th style="text-align: center; border-color: black; border: 10px"></th>
+          <ng-container style="text-align: center; border-color: black; border: 10px" *ngFor="let row of rows">
+            <th style="text-align: center; border-color: black; border: 10px">
+              {{ row.label }}
+            </th>
+          </ng-container>
+        </tr>
+        <tr *ngFor="let item of items; let i = index">
+          <td>{{ item }}</td>
+          <td
+            *ngFor="let row of rows; let j = index"
+            (click)="cellClicked(j, i)"
+            [ngStyle]="{ 'background-color': rows[j].cells[i] }"
+          >
+          </td>
+        </tr>
+      </table>
     </div>
-    <div class="element">
-      <!-- Ion Select para escolher a semana -->
-      <ion-item>
-        <ion-label>Semanas:</ion-label>
-        <ion-select placeholder="Selecione uma semana" [(ngModel)]="selectedWeek" (ionChange)="changeWeek()">
-          <ion-select-option *ngFor="let week of weeks" [value]="week">{{ week }}</ion-select-option>
-        </ion-select>
-      </ion-item>
+
+    <ion-infinite-scroll (ionInfinite)="loadMore($event)">
+      <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Carregando mais itens..."></ion-infinite-scroll-content>
+    </ion-infinite-scroll>
+  </ng-container>
+
+  <!-- Template para exibir o cartão de Kanban -->
+  <ng-template #kanbanTemplate>
+    <div class="kanban-cards">
+
+      <ion-card>
+        <ion-card-header>
+          Para fazer
+        </ion-card-header>
+        <ion-card-content>
+          <!-- Conteúdo do cartão Kanban -->
+        </ion-card-content>
+      </ion-card>
+
+      <ion-card>
+        <ion-card-header>
+          Fazendo
+        </ion-card-header>
+        <ion-card-content>
+          <!-- Conteúdo do cartão Kanban -->
+        </ion-card-content>
+      </ion-card>
+
+      <ion-card>
+        <ion-card-header>
+          Feito
+        </ion-card-header>
+        <ion-card-content>
+          <!-- Conteúdo do cartão Kanban -->
+        </ion-card-content>
+      </ion-card>
+
     </div>
-  </div>
-
-  <div class="table-container" style="background-color: azure">
-    <table style="text-align: center; border-color: black; border: 10px">
-      <tr>
-        <th style="text-align: center; border-color: black; border: 10px"></th>
-        <ng-container
-          style="text-align: center; border-color: black; border: 10px"
-          *ngFor="let row of rows"
-        >
-          <th style="text-align: center; border-color: black; border: 10px">
-            {{ row.label }}
-          </th>
-        </ng-container>
-      </tr>
-      <tr *ngFor="let item of items; let i = index">
-        <td>{{ item }}</td>
-        <td
-          *ngFor="let row of rows; let j = index"
-          (click)="cellClicked(j, i)"
-          [ngStyle]="{ 'background-color': rows[j].cells[i] }"
-        >
-          
-        </td>
-      </tr>
-    </table>
-  </div>
-
-  <ion-infinite-scroll (ionInfinite)="loadMore($event)">
-    <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Carregando mais itens..."></ion-infinite-scroll-content>
-  </ion-infinite-scroll>
-
-  <style>
-    .container {
-      display: flex;
-      justify-content: space-between;
-      margin-bottom: 10px;
-    }
-
-    .element {
-      flex: 1;
-      margin-right: 10px;
-    }
-
-    .table-container {
-      overflow-x: auto;
-    }
-
-    .horizontal-scroll {
-      display: flex;
-      overflow-x: auto;
-    }
-  </style>
+  </ng-template>
 </ion-content>
