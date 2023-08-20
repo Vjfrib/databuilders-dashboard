@@ -29,11 +29,72 @@
           <p>Valor total: 168 Mil</p>
         </ion-card-content>
       </ion-card>
-      <div class="images-container">
+      <!-- <div class="images-container">
         <img src="https://i.ibb.co/PN3t3M1/Imagem-do-Whats-App-de-2023-06-09-s-02-34-20.jpg" alt="errei" class="lats">
         <img src="https://i.ibb.co/F593BKx/cimento.jpg" alt="" class="lats">
-      </div>
+      </div> -->
     </div>
     
   </div>
+  <div id="conteudo" style="display: flex;">
+    <div class="value-card">
+      <ion-card>
+        <ion-card-header>
+          <ion-card-title>Tabela de Valores</ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+          <ion-list>
+            <ion-item>
+              <ion-label>Cimento</ion-label>
+              <ion-label class="value">R$ 500,00</ion-label>
+            </ion-item>
+            <ion-item>
+              <ion-label>Categoria 2</ion-label>
+              <ion-label class="value">R$ 800,00</ion-label>
+            </ion-item>
+            <!-- Adicione mais itens de tabela conforme necessário -->
+          </ion-list>
+        </ion-card-content>
+      </ion-card>
+    </div>
+
+    <div class="value-card">
+      <ion-card>
+        <ion-card-header>
+          <ion-card-title>Gráfico de Exemplo</ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+          <div id="chart_div_buldge"></div>
+        </ion-card-content>
+      </ion-card>
+    </div>
+  </div>
 </ion-content>
+
+<style>
+  .card-container {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+  }
+
+  .value-card {
+    flex: 1;
+    margin-right: 10px;
+    max-width: 50%;
+    
+  }
+
+  #chart_div_buldge {
+    width: 100%;
+    height: 800px; 
+    
+  }
+
+  #chart_div_buldge > div {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+  }
+</style>
+  
