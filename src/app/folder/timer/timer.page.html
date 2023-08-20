@@ -73,66 +73,85 @@
   </ng-container>
 
   <!-- Template para exibir o cartão de Kanban -->
-<ng-template #kanbanTemplate>
-  <div class="kanban-cards">
-    <ion-card class="kanban-card" (dragover)="allowDrop($event)" (drop)="onDrop($event, 'todo')">
-      <ion-card-header>
-        Para fazer
-      </ion-card-header>
-      <ion-card-content>
-        <ion-card class="sub-card" draggable="true" (dragstart)="onDragStart($event, 'sub-cartao-1')">
-          <ion-card-header>
-            Atividade dia 16/09
-          </ion-card-header>
-          <ion-card-content>
-            Compra próxima quantidade e areia
-          </ion-card-content>
-        </ion-card>
-      </ion-card-content>
-    </ion-card>
-
-    <ion-card class="kanban-card" (dragover)="allowDrop($event)" (drop)="onDrop($event, 'fazendo')">
-      <ion-card-header>
-        Fazendo
-      </ion-card-header>
-      <ion-card-content>
-        <!-- Conteúdo do cartão Kanban "Fazendo" -->
-      </ion-card-content>
-    </ion-card>
-
-    <ion-card class="kanban-card" (dragover)="allowDrop($event)" (drop)="onDrop($event, 'feito')">
-      <ion-card-header>
-        Feito
-      </ion-card-header>
-      <ion-card-content>
-        <!-- Conteúdo do cartão Kanban "Feito" -->
-      </ion-card-content>
-    </ion-card>
-  </div>
-  <style>
-    .kanban-cards {
-      display: flex;
-      flex-direction: row;
-      height: 100vh;
-    }
-
-    .kanban-card {
-      flex: 1;
-      margin: 0 5px;
-      max-width: calc(33.33% - 10px);
-      display: flex;
-      flex-direction: column;
-    }
-
-    .kanban-card ion-card-content {
-      flex: 1;
-    }
-
-    .sub-card {
-      margin-top: 10px;
-    }
-  </style>
-</ng-template>
+  <ng-template #kanbanTemplate>
+    <div class="kanban-cards">
+      <ion-card class="kanban-card todo" (dragover)="allowDrop($event)" (drop)="onDrop($event, 'todo')">
+        <ion-card-header>
+          Para fazer
+        </ion-card-header>
+        <ion-card-content>
+          <ion-card class="sub-card" draggable="true" (dragstart)="onDragStart($event, 'sub-cartao-1')">
+            <ion-card-header>
+              Atividade dia 16/09
+            </ion-card-header>
+            <ion-card-content>
+              Compra próxima quantidade e areia
+            </ion-card-content>
+          </ion-card>
+        </ion-card-content>
+      </ion-card>
+  
+      <ion-card class="kanban-card fazendo" (dragover)="allowDrop($event)" (drop)="onDrop($event, 'fazendo')">
+        <ion-card-header>
+          Fazendo
+        </ion-card-header>
+        <ion-card-content>
+          <!-- Conteúdo do cartão Kanban "Fazendo" -->
+        </ion-card-content>
+      </ion-card>
+  
+      <ion-card class="kanban-card feito" (dragover)="allowDrop($event)" (drop)="onDrop($event, 'feito')">
+        <ion-card-header>
+          Feito
+        </ion-card-header>
+        <ion-card-content>
+          <!-- Conteúdo do cartão Kanban "Feito" -->
+        </ion-card-content>
+      </ion-card>
+    </div>
+    <style>
+      .kanban-cards {
+        display: flex;
+        flex-direction: row;
+        height: 100vh;
+      }
+  
+      .kanban-card {
+        flex: 1;
+        margin: 0 5px;
+        max-width: calc(33.33% - 10px);
+        display: flex;
+        flex-direction: column;
+        background-color: #f2f2f2; /* Fundo cinza claro */
+        border-radius: 5px;
+        padding: 10px;
+      }
+  
+      .kanban-card ion-card-content {
+        flex: 1;
+      }
+  
+      .sub-card {
+        margin-top: 10px;
+        background-color: white; /* Fundo branco para sub-cartões */
+        padding: 10px;
+        border-radius: 5px;
+      }
+  
+      .todo {
+        border: 3px solid #e57373; /* Borda vermelha para cartão "Para fazer" */
+      }
+  
+      .fazendo {
+        border: 3px solid #64b5f6; /* Borda azul para cartão "Fazendo" */
+      }
+  
+      .feito {
+        border: 3px solid #81c784; /* Borda verde para cartão "Feito" */
+      }
+    </style>
+  </ng-template>
+  
 
   
   
