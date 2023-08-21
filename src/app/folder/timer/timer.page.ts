@@ -7,7 +7,30 @@ import { AlertController } from '@ionic/angular';
   styleUrls: ['./timer.page.scss'],
 })
 export class TimerPage implements OnInit {
-  items = ['Fundação', 'Vigas', 'Pilares', 'Lages', 'Alvenaria'];
+  items = [
+    '01 - DESPESAS INDIRETAS',
+'02 - AQUISIÇÕES',
+'03 - SERVIÇOS PRELIMINARES / MOVIMENTO DE TERRA',
+'04 - FUNDAÇÕES',
+'05 - PAVIMENTO PILOTIS - 1a Pav.',
+'06 - PAVIMENTO VAZADO - 2º Pav.',
+'07 - PAVIMENTO TIPO - CIVIL',
+'08 - PAVIMENTO COBERTA / CASA DE MÁQUINAS - 19º Pav.',
+'09 - CAIXA D\'ÁGUA - RESERVATÓRIO SUPERIOR',
+'10 - INSTALAÇÕES PROVISÓRIAS',
+'11 - INSTALAÇÕES ELÉTRICAS',
+'12 - INSTALAÇÕES DE ESGOTO',
+'13 - INSTALAÇÃO DE ÁGUA',
+'14 - COMBATE A INCÊNDIO',
+'15 - INSTALAÇÃO EXAUSTÃO',
+'16 - INSTALAÇÃO DE GÁS',
+'17 - INSTALAÇÃO DE TELEFONE / ANTENA',
+'18 - INSTALAÇÃO DE AR CONDICIONADO',
+'19 - INSTALAÇÃO DE SPDA',
+'20 - LOUÇAS E METAIS',
+'21 - ENERGIA SOLAR',
+'22 - MÃO DE OBRA DE INSTALAÇÕES GERAIS',
+'23 - ITENS EXTRA'];
   rows = [
     { label: '09/06', cells: Array(5).fill('') },
     { label: '10/06', cells: Array(5).fill('') },
